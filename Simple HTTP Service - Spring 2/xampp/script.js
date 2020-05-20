@@ -4,14 +4,7 @@ const url = "http://localhost:8080";
 
 var idToDelete = parseInt($('#employeeToDelete').val());
 
-var idToModify = $('#employeeToModify').val();
-
-var modifiedInfo = 
-    {
-        name: $('#nameEmployeeToModify').val(),
-        role: $('#workModified').val(), 
-        salary: getSalary()
-    };  
+var idToModify = $('#employeeToModify').val(); 
 
 function getSalary(){
     switch($('#workSelection').val())
@@ -75,7 +68,7 @@ function getEmployees()
     $.ajax
     ({
         type: 'GET',
-        url:url + '/employees',
+        url: url + '/employees',
         success: function(data)
         {
             console.log(data); // Object's array
@@ -109,11 +102,14 @@ function getEmployees()
 function checkEmployee()
 {
 
-    var idToModifyUrl = parseInt(idToModify);
+    let idToModifyUrl = parseInt(idToModify);
 
     $.ajax({
         type:'GET',
         url: url + '/employees',
+        headers:{
+            'Allow-Access-Allow-Origin':'*'
+        },
         success:function(data)
         {
             for(let e in data)
@@ -138,37 +134,44 @@ function checkEmployee()
         {
             console.log(error);
         }
-    })
+    });
 }
 
 // AJAX MODIFY EMPLOYEE
 
 function modifyEmployee()
 {
+   var modifiedInfo = 
+    {
+        name: $('#nameEmployeeToModify').val(),
+        role: $('#workModified').val(), 
+        salary: getSalary(),
+        id: idToModify
+    }; 
 
     $.ajax({
         type:'PUT',
-        url: url + '/employees/'+ idToModify,
-        data: JSON.stringify(modifiedInfo),
+        url: url + '/employees/' + idToModify, 
+        data: modifiedInfo,/*{name: $('#nameEmployeeToModify').val(), role: $('#workModified').val(), salary: getSalary(), id: idToModify},*/
         contentType: 'application/json',
-        dataType:'JSON',
-        //crossDomain: true, //test
-        headers: { //test
+        //dataType:'json',
+        //crossDomain: true, 
+        headers: {
             'Access-Control-Allow-Origin':'*',
-            'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT, DELETE',
-            //'Access-Control-Allow-Headers': 'Content-Type, X-Requested-With, X-Token-Auth, Autoritzation'
+            'Access-Control-Allow-Methods': '*',
+            //'Access-Control-Allow-Headers': '*',
+            //'Access-Control-Allow-Credentials': true
         },
         success: function(modifiedInfo)
         {
             console.log("New info: " + modifiedInfo.id + " " + modifiedInfo.name + " " + modifiedInfo.role);
             console.log(idToModify);
         },
-        error: function(error)
+        error: function(response)
         {
-            console.log("Error to delete, review your AJAX Code/Spring, Error log: " + error);
-            //console.log(url + "/employees/" + idToModify);
+            console.log("Error to modify employee, review your AJAX Code/Spring, Error log: " + response);
         }
-    })
+    });
 }
 
 // AJAX DELETE EMPLOYEE
@@ -178,12 +181,12 @@ function deleteEmployee()
 
     $.ajax({
         type:'DELETE',
-        url: url + '/employees/'+ idToDelete,
+        url: url + '/employees',
         data: JSON.stringify(idToDelete),
         headers: { 
             'Access-Control-Allow-Origin':'*',
             'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT, DELETE',
-            'Access-Control-Allow-Headers': 'Content-Type, X-Requested-With, X-Token-Auth, Authorization'
+            'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Requested-With, X-Token-Auth, Authorization'
         },
         contentType: 'JSON',
         success:function(idToDelete)
@@ -200,5 +203,5 @@ function deleteEmployee()
         {
             console.log("Error to delete employee, review AJAX/Spring Code");
         }
-    })
+    });
 }
