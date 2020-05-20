@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang ="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>HTTP Service Spring</title>
+        <link rel="stylesheet" href="style.css">
+        
+    </head>
+    <body>
+        <h1>HTTP Simple Service with <span id="springStyle">Spring</span></h1>
+        <h2>The Fellowship Of The Ring: Companion Management Program v1.0</h2>
+        <div id="generalBox">
+            <div>
+                <h4>Create Companion:</h4>
+                <p> Please add the information for a new companion:</p>
+                <input type="text" placeholder="Name Companion" id="nameEmployee">
+               <select name="Select work" id="workSelection">
+                    <option value="Warrior">Warrior</option>
+                    <option value="Bugglar">Bugglar</option>
+                    <option value="Thief">Thief</option>
+                    <option value="Archer">Archer</option>
+                    <option value="Mage">Mage</option>
+                    <option value="Berserk">Berserk</option>
+                    <option value="Sentinel">Sentinel</option>
+                </select>
+                <button type="submit" onclick="createEmployees()">Create Companion</button>
+                <div id="showNewEmployee"></div>
+            </div>
+            <div>
+                <h4>List of Companions</h4>
+                <p>Press button "Show Companions" for get list of companions:</p>
+                <div id="showEmployeesList">
+                </div>
+                <div id="employeeDetails"></div>
+                <button type="submit" onclick="getEmployees()">Show Companions</button>
+            </div>
+            <div>
+                <h4>Modify Companions</h4>
+                <p>Check before the list of companions for correct introduction of id!</p>
+                <div id="selectedId"></div>
+                <div id = "modifyEmployeeBox">
+                    <input type="text" id ="employeeToModify" placeholder="ID of Companion here">
+                    <button type="submit" onclick="checkEmployee()">Check ID</button>
+                </div>
+            </div>
+            <div>
+                <h4>Delete Companions</h4>
+                <p class="attentionRed">Be careful, deleted companions, cannot be recovered!</p>
+                <div id = "deleteBox">
+                    <input type="text" id ="employeeToDelete" placeholder="ID of Companion here">
+                    <button type="submit" onclick="deleteEmployee()">Delete ID</button>
+                </div>
+            </div>
+        </div>
+            
+        <script defer src="script.js" text="text/javascript"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </body>
+</html>

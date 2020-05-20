@@ -1,0 +1,35 @@
+/******* Structure CSS *******/
+
+
+
+/*-- Structure ------------------------*/
+
+
+#generalBox {
+    border-width: 1px;
+    padding: 0 15px 15px;
+    width: 600px;
+    margin: 0 auto 0 0;
+
+}
+/*-- Tipografy ------------------------*/
+
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+/*-- Stetics --------------------------*/
+
+#generalBox {
+    border-color: #000000;
+    border-style: solid;
+}
+
+#springStyle {
+    color: #09bd09;
+}
+
+.attentionRed {
+    color: #ff0000;
+}
