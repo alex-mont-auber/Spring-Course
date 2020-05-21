@@ -2,6 +2,8 @@ package com.ITAcademy.employees.Models;
 
 import lombok.Data;
 
+import com.ITAcademy.employees.Models.Role.*;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -15,12 +17,12 @@ public class Employee {
 
     private @Id @GeneratedValue Long Id;
     private String name;
-    private String role;
+    private Role role;
     private int salary;
 
     public Employee() { }
 
-    public Employee(String name,String role, int salary) {
+    public Employee(String name,Role role, int salary) {
         this.name = name;
         this.role = role;
         this.salary = salary;
@@ -42,17 +44,16 @@ public class Employee {
         this.name = name;
     }
 
-    public String getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
     }
-        // añadidos de salario
-    public int getSalary() {
-        return salary;
-    }
+
+        // añadidendo el salario
+    public int getSalary() { return salary; }
 
     public void setSalary(int salary) {
         this.salary = salary;
