@@ -2,17 +2,20 @@
 
 const url = "http://localhost:8080";
 
-var idToDelete = parseInt($('#employeeToDelete').val());
-
 var idToModify = $('#employeeToModify').val(); 
 
-function getSalary(){
+var idToModifyUrl = parseInt(idToModify);
+
+var idToDelete = $('#employeeToDelete').val();
+
+function getSalary()
+{
     switch($('#workSelection').val())
     {
         case "Warrior":
            return salary = 30;
            break;
-        case "Bugglar":
+        case "Burglar":
             return salary = 10;
             break;
         case "Thief":
@@ -35,8 +38,6 @@ function getSalary(){
 
 function createEmployees()
 {
-    // First Method: Independent function with switch 
-    // Second Method, charge the Role's and Salary in Server, and read across JSON by for, then AJAX GET of Role's and put the correspondent Salary.
 
     var sendInfo = 
     {
@@ -53,6 +54,7 @@ function createEmployees()
         success: function(sendInfo, response)
         {
             document.getElementById('showNewEmployee').innerHTML = "<p>New Employee created! Name: <strong>" + sendInfo.name + "</strong>, Role: <strong>" + sendInfo.role + "</strong>. We will apply the salary stipulated in the contract signed with FotR Company. Sauron taxes included. More details -> Click 'Show Companions'";
+            console.log(sendInfo);
         },
         error: function(error)
         {
@@ -102,8 +104,6 @@ function getEmployees()
 function checkEmployee()
 {
 
-    let idToModifyUrl = parseInt(idToModify);
-
     $.ajax({
         type:'GET',
         url: url + '/employees',
@@ -122,7 +122,7 @@ function checkEmployee()
 
                     document.getElementById("selectedId").innerHTML = "ID Selected: " + idToModifyUrl + ", Current Data: " + data[e].name + ", " + data[e].role;
 
-                    document.getElementById("modifyEmployeeBox").innerHTML = '<input type="text" id ="nameEmployeeToModify" placeholder="New name here"> <select id="workModified" name="modified Work"><option value="Warrior">Warrior</option><option value="Bugglar">Bugglar</option><option value="Thief">Thief</option><option value="Archer">Archer</option><option value="Mage">Mage</option><option value="Berserk">Berserk</option><option value="Sentinel">Sentinel</option></select> <button type="submit" onclick="modifyEmployee()">Save Modifications</button> <button onclick="location.reload()">Back</button>';
+                    document.getElementById("modifyEmployeeBox").innerHTML = '<input type="text" id ="nameEmployeeToModify" placeholder="New name here"> <select id="workModified" name="modified Work"><option value="Warrior">Warrior</option><option value="Burglar">Bugglar</option><option value="Thief">Thief</option><option value="Archer">Archer</option><option value="Mage">Mage</option><option value="Berserk">Berserk</option><option value="Sentinel">Sentinel</option></select> <button type="submit" onclick="modifyEmployee()">Save Modifications</button> <button onclick="location.reload()">Back</button>';
                 } 
                 else if (data[e].id !== idToModifyUrl)
                 {
@@ -141,31 +141,20 @@ function checkEmployee()
 
 function modifyEmployee()
 {
-   var modifiedInfo = 
-    {
-        name: $('#nameEmployeeToModify').val(),
-        role: $('#workModified').val(), 
-        salary: getSalary(),
-        id: idToModify
-    }; 
+   var modifiedInfo = { 
+       name:$("#nameEmployeeToModify").val(),
+       role: $("#workModified").val(), 
+       salary: getSalary()
+    };
 
     $.ajax({
         type:'PUT',
         url: url + '/employees/' + idToModify, 
-        data: modifiedInfo,/*{name: $('#nameEmployeeToModify').val(), role: $('#workModified').val(), salary: getSalary(), id: idToModify},*/
+        data: JSON.stringify(modifiedInfo),
         contentType: 'application/json',
-        //dataType:'json',
-        //crossDomain: true, 
-        headers: {
-            'Access-Control-Allow-Origin':'*',
-            'Access-Control-Allow-Methods': '*',
-            //'Access-Control-Allow-Headers': '*',
-            //'Access-Control-Allow-Credentials': true
-        },
         success: function(modifiedInfo)
         {
-            console.log("New info: " + modifiedInfo.id + " " + modifiedInfo.name + " " + modifiedInfo.role);
-            console.log(idToModify);
+            console.log("New info: ID: " + modifiedInfo.id + ", Name: " + modifiedInfo.name + ", Role: " + modifiedInfo.role);
         },
         error: function(response)
         {
@@ -176,28 +165,17 @@ function modifyEmployee()
 
 // AJAX DELETE EMPLOYEE
 
-function deleteEmployee()
+function deleteEmployee(data)
 {
 
     $.ajax({
         type:'DELETE',
-        url: url + '/employees',
-        data: JSON.stringify(idToDelete),
-        headers: { 
-            'Access-Control-Allow-Origin':'*',
-            'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT, DELETE',
-            'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Requested-With, X-Token-Auth, Authorization'
-        },
-        contentType: 'JSON',
-        success:function(idToDelete)
-        {
-            for(let e in data) 
-            {
-                if(data[e].id === idToDelete) 
-                {
-                    console.log("Delete Enter, check data info");
-                }
-            }
+        url: url + '/employees/' + idToDelete,
+        contentType: 'application/json',
+        success:function()
+        { 
+        console.log("Delete Enter, check data info");
+ 
         },
         error:function()
         {
