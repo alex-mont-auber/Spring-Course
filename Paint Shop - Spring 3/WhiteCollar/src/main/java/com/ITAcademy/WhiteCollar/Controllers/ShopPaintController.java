@@ -23,34 +23,43 @@ public class ShopPaintController {
         this.paintRepository = paintRepository;
     }
 
-    @GetMapping("/shops") // SHOW ALL SHOPS
-    List<Shop> all()
+    /* FOR TEST NEW CHANGES -> APPLICATION.PROPERTIES (IN MAVEN) AN CHANGE FIRST LINE TO:
+    *
+    * UPDATE -> IF YOU WANT ONLY ADD DATA
+    * CREATE -> FOR "RESET" ALL DB AND ADD NEW PARAMETERS
+    * NONE -> IF YOU WANT SERVER DON'T DO ANYTHING(MYSQL NONE IS THE STANDAR)
+    * CREATE-DROP -> CREATE A DB AND DROP WHEN SESSION IS FINALIZED
+    *
+    * */
+
+
+
+    @GetMapping("/shops") // SHOW ALL SHOPS(WORKS)
+    List<Shop> getAllShops()
     {
         return shopRepository.findAll();
     }
 
-    @PostMapping("/shops") // CREATE SHOP
+    @PostMapping("/shops") // CREATE SHOP(WORKS)
     Shop newShop(@RequestBody Shop newShop)
     {
         return shopRepository.save(newShop);
     }
 
-    @GetMapping("/shops/{id}") // SHOW SHOP X WITH DETAILS
+    @GetMapping("/shops/{shopId}") // SHOW SHOP X WITH DETAILS(WORKS)
     Shop one(@PathVariable Long shopId)
     {
         return shopRepository.findById(shopId).orElseThrow(() -> new ShopNotFoundException(shopId));
     }
 
-/*  @GetMapping("/shops/{id}/paints") // SHOW PAINTS BY SHOP
-    Shop two(@PathVariable Long shopId)
+   /* @GetMapping("/shops/{id}/paints") // SHOW PAINTS BY SHOP(BUILDING)
+    List<Paint> getAllPaints()
     {
-        List<Paint> all()
-        {
-            return paintRepository.findAll();
-        }
-    }*/ // STANDBY
+        return paintRepository.findAll();
+    }*/
+     // STANDBY
 
-    @PostMapping("/shops/{id}/paints") //CREATE PAINTS
-    Paint newPain(@RequestBody Paint newPaint) {return paintRepository.save(newPaint);}
+   /*@PostMapping("/shops/{id}/paints") //CREATE PAINTS(BUILDING)
+    Paint newPaint(@RequestBody Paint newPaint) {return paintRepository.save(newPaint);}*/
 
 }
