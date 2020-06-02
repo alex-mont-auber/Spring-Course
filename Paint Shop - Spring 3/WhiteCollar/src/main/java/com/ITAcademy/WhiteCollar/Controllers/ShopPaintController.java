@@ -23,7 +23,7 @@ public class ShopPaintController {
         this.paintRepository = paintRepository;
     }
 
-    /* FOR TEST NEW CHANGES -> APPLICATION.PROPERTIES (IN MAVEN) AN CHANGE FIRST LINE TO:
+    /* FOR TEST NEW CHANGES -> APPLICATION.PROPERTIES AN CHANGE FIRST LINE TO:
     *
     * UPDATE -> IF YOU WANT ONLY ADD DATA
     * CREATE -> FOR "RESET" ALL DB AND ADD NEW PARAMETERS
@@ -31,8 +31,6 @@ public class ShopPaintController {
     * CREATE-DROP -> CREATE A DB AND DROP WHEN SESSION IS FINALIZED
     *
     * */
-
-
 
     @GetMapping("/shops") // SHOW ALL SHOPS(WORKS)
     List<Shop> getAllShops()
@@ -47,8 +45,7 @@ public class ShopPaintController {
     }
 
     @GetMapping("/shops/{shopId}") // SHOW SHOP X WITH DETAILS(WORKS)
-    Shop one(@PathVariable Long shopId)
-    {
+    Shop one(@PathVariable Long shopId) {
         return shopRepository.findById(shopId).orElseThrow(() -> new ShopNotFoundException(shopId));
     }
 
