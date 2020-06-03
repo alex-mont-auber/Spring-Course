@@ -6,6 +6,7 @@ import lombok.Data;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.util.List;
 
 @Data
 @Entity
@@ -15,13 +16,21 @@ public class Shop {
     private @Id @GeneratedValue Long shopId;
     private String shopName;
     private int quantityPaints;
+    //private List<Integer> listIdPaintsOwned;
 
     public Shop(){}
 
-    public Shop(String shopName, int quantityPaints){
+    public Shop(String shopName){
         this.shopName = shopName;
-        this.quantityPaints = quantityPaints;
     }
+
+    /*public List<Integer> getListIdPaintsOwned() {
+        return listIdPaintsOwned;
+    }*/
+
+    /*public void setListIdPaintsOwned(List<Integer> listIdPaintsOwned) {
+        this.listIdPaintsOwned = listIdPaintsOwned;
+    }*/
 
     public Long getShopId() {
         return shopId;

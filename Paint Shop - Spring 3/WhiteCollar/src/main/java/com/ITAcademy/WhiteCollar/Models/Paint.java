@@ -10,20 +10,30 @@ import java.util.Date;
 @Data
 @Entity
 
-
 public class Paint {
 
     private @Id @GeneratedValue Long paintId;
+    private String paintName;
     private String authorName;
     private int price;
     private Date dateEnterShop;
 
     public Paint(){}
 
-    public Paint(String authorName, int price, Date dateEnterShop){
+    public Paint(String paintName, String authorName, int price, Date dateEnterShop)
+    {
+        this.paintName = paintName;
         this.authorName = authorName;
         this.price = price;
         this.dateEnterShop = dateEnterShop;
+    }
+
+    public String getPaintName() {
+        return paintName;
+    }
+
+    public void setPaintName(String paintName) {
+        this.paintName = paintName;
     }
 
     public Long getPaintId() {
