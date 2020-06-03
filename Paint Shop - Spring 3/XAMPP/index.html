@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>White Collar Shop</title>
+</head>
+<body>
+    <div id="generalBox">
+        <div id="logoYTitulo">
+            <h1>White Collar Shopping</h1>
+            <div id="logo">
+                <img src="img/logo-white-collar-shopping.jpg" alt="logo-white-collar">
+            </div>
+        </div>
+        
+        <h2>Tu tienda de art...digo de collares de referencia :D</h2>
+        <p>The items shown are those that will be put up for sale, any similarity (IF ANY) is PURE coincidence, we have certificates of authenticity issued by the company CertificacionesConDosCoj *** s S.L. operating from 1235 B.C.</p>
+
+        <p>Choose an option:</p>
+
+        <div class="tab" id="tabOne">
+            <button class="tablinks" onclick="openTab(event, 'createAShop')" id="defaultOpen" id="buttonOne">Create <strong>Shop</strong></button>
+            <button class="tablinks" onclick="openTab(event, 'createAPaint')" id="buttonTwo">Create <strong>Paint</strong></button>
+            <button class="tablinks" onclick="openTab(event, 'showTheShops')" id="buttonThree">List of Shops</button>
+            <button class="tablinks redButton" onclick="openTab(event, 'eraseEvidences')" id="buttonFour">RED BUTTON</button>
+        </div>
+
+        <div id="createAShop" class="tabcontent">
+            <h3>Create your shop!</h3>
+            <p>Welcome to White Collar, we are proud to form part of a big franchise in the world, and we want to share with you our enjoy.</p>
+            <p>Enter data here:</p>
+            <input type="text" id="newNameShop" placeholder="Name Shop">
+            <button type="submit" onclick="createShop()">Create Shop</button>
+            <div id="showNewShop"></div>
+        </div>
+
+        <div id="createAPaint" class="tabcontent">
+            <h3>Create Paints</h3>
+            <p>This system is for create the pictur...collars! of our company</p>
+            <input type="text" id="newNamePaint" placeholder="Name Paint">
+            <button type="submit" onclick="createPaint()">Create Paint</button>
+            <div id="showNewPaint"></div>
+        </div>
+        
+        <div id="showTheShops" class="tabcontent">
+            <h3>Show shops</h3>
+            <p>All shops of our company</p>
+            <div id="allShops">
+            </div>
+        </div>
+        
+        <div id="eraseEvidences" class="tabcontent">
+            <h3>AZ-5</h3>
+            <p>Police is comming...</p>
+        </div>
+    </div>
+    
+    <script src="js/script.js" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</body>
+</html>

@@ -1,7 +1,6 @@
 package com.ITAcademy.WhiteCollar.Controllers;
 
 import com.ITAcademy.WhiteCollar.Exceptions.ShopNotFoundException;
-import com.ITAcademy.WhiteCollar.Models.Paint;
 import com.ITAcademy.WhiteCollar.Models.Shop;
 import com.ITAcademy.WhiteCollar.Repositories.PaintRepository;
 import com.ITAcademy.WhiteCollar.Repositories.ShopRepository;

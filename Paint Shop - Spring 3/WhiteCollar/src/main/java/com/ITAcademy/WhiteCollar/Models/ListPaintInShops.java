@@ -1,16 +1,13 @@
 package com.ITAcademy.WhiteCollar.Models;
 
-import com.ITAcademy.WhiteCollar.Models.Shop;
-import com.ITAcademy.WhiteCollar.Models.Paint;
+//import com.ITAcademy.WhiteCollar.Models.Shop;
+//import com.ITAcademy.WhiteCollar.Models.Paint;
 import lombok.Data;
 
-import javax.persistence.Entity;
+//import javax.persistence.Entity;
 
 @Data
-@Entity
-
-
-
+//@Entity
 
 public class ListPaintInShops {
 
