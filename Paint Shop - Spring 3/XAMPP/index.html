@@ -21,8 +21,8 @@
         <p>Choose an option:</p>
 
         <div class="tab" id="tabOne">
-            <button class="tablinks" onclick="openTab(event, 'createAShop')" id="defaultOpen" id="buttonOne">Create Shop</button>
-            <button class="tablinks" onclick="openTab(event, 'createAPaint')" id="buttonTwo">Create Paint</button>
+            <button class="tablinks" onclick="openTab(event, 'createAShop')" id="defaultOpen" id="buttonOne">Create <strong>Shop</strong></button>
+            <button class="tablinks" onclick="openTab(event, 'createAPaint')" id="buttonTwo">Create <strong>Paint</strong></button>
             <button class="tablinks" onclick="openTab(event, 'showTheShops')" id="buttonThree">List of Shops</button>
             <button class="tablinks redButton" onclick="openTab(event, 'eraseEvidences')" id="buttonFour">RED BUTTON</button>
         </div>
@@ -31,16 +31,24 @@
             <h3>Create your shop!</h3>
             <p>Welcome to White Collar, we are proud to form part of a big franchise in the world, and we want to share with you our enjoy.</p>
             <p>Enter data here:</p>
+            <input type="text" id="newNameShop" placeholder="Name Shop">
+            <button type="submit" onclick="createShop()">Create Shop</button>
+            <div id="showNewShop"></div>
         </div>
 
         <div id="createAPaint" class="tabcontent">
             <h3>Create Paints</h3>
             <p>This system is for create the pictur...collars! of our company</p>
+            <input type="text" id="newNamePaint" placeholder="Name Paint">
+            <button type="submit" onclick="createPaint()">Create Paint</button>
+            <div id="showNewPaint"></div>
         </div>
         
         <div id="showTheShops" class="tabcontent">
             <h3>Show shops</h3>
             <p>All shops of our company</p>
+            <div id="allShops">
+            </div>
         </div>
         
         <div id="eraseEvidences" class="tabcontent">
