@@ -2,15 +2,15 @@ package com.ITAcademy.WhiteCollar.Models;
 
 //import com.ITAcademy.WhiteCollar.Models.Shop;
 //import com.ITAcademy.WhiteCollar.Models.Paint;
-import lombok.Data;
+//import lombok.Data;
 
 //import javax.persistence.Entity;
 
-@Data
+//@Data
 //@Entity
 
-public class ListPaintInShops {
-
+public class ListPaintInShops { // Testing One to Many, Many to One, if it works, this class will be eliminated.
+/*
     private String paintNameList;
     private String shopNameList;
     private int idShopList;
@@ -56,5 +56,5 @@ public class ListPaintInShops {
 
     public void setIdPaintList(int idPaintList) {
         this.idPaintList = idPaintList;
-    }
+    }*/
 }
