@@ -40,15 +40,14 @@ function openTab(evt, cityName)
 
   const url = "http://localhost:8080"
 
-function createShop() 
+function createShop()
 {
-
   var sendInfo = 
   {
-    shopName: $('#newNameShop').val()
+    shopName: $('#newNameShop').val() //Give data from input
   };
 
-  $.ajax({
+  $.ajax({ // Create shop AJAX Post
     type:'POST',
     url:url + '/shops',
     data: JSON.stringify(sendInfo),
@@ -63,5 +62,30 @@ function createShop()
       console.log(error);
     }
   });
+}
+
+function showAllShops() 
+{
+  $.ajax({
+    type:'GET',
+    url: url + '/shops',
+    contentType: 'application/json',
+    success: function(data)
+    {
+      document.getElementById('allShops').innerHTML="";
+      let ul = document.createElement('ul');
+      for(let e in data) // array's lector
+      {
+          let li = document.createElement('li');
+
+          ul.appendChild(li);
+          li.appendChild += data;
+
+          document.getElementById("allShops").appendChild(ul);
+
+          li.innerHTML = "Shop: " + data[e].shopName + ", ID: " + data[e].shopId;
+      }
+    }
+  })
 }
 
