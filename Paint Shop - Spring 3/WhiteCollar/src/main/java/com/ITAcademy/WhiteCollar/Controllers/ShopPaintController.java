@@ -1,7 +1,9 @@
 package com.ITAcademy.WhiteCollar.Controllers;
 
+import com.ITAcademy.WhiteCollar.Exceptions.PaintNotFoundException;
 import com.ITAcademy.WhiteCollar.Exceptions.ShopNotFoundException;
 import com.ITAcademy.WhiteCollar.Models.Shop;
+import com.ITAcademy.WhiteCollar.Models.Paint;
 import com.ITAcademy.WhiteCollar.Repositories.PaintRepository;
 import com.ITAcademy.WhiteCollar.Repositories.ShopRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,14 +50,15 @@ public class ShopPaintController {
         return shopRepository.findById(shopId).orElseThrow(() -> new ShopNotFoundException(shopId));
     }
 
-   /* @GetMapping("/shops/{id}/paints") // SHOW PAINTS BY SHOP(BUILDING)
-    List<Paint> getAllPaints()
-    {
-        return paintRepository.findAll();
-    }*/
+   @GetMapping("/shops/{id}/paints") // SHOW PAINTS BY SHOP(BUILDING)
+       List<Paint> getAllPaints()
+       {
+           return paintRepository.findAll();
+       }
+
      // STANDBY
 
-   /*@PostMapping("/shops/{id}/paints") //CREATE PAINTS(BUILDING)
-    Paint newPaint(@RequestBody Paint newPaint) {return paintRepository.save(newPaint);}*/
+   @PostMapping("/shops/{id}/paints") //CREATE PAINTS(BUILDING)
+    Paint newPaint(@RequestBody Paint newPaint) {return paintRepository.save(newPaint);}
 
 }

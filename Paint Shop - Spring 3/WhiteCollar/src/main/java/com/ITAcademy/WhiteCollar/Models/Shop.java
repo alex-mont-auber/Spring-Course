@@ -17,26 +17,11 @@ public class Shop {
     private String shopName;
     private int quantityPaints;
 
-    /* TESTING OneToMany */
-
-    @OneToMany(mappedBy="shop")
-    private Set<Paint> paints;
-
-    /* TESTING OneToMany */
-
     public Shop(){}
 
     public Shop(String shopName){
         this.shopName = shopName;
     }
-
-    /*public List<Integer> getListIdPaintsOwned() {
-        return listIdPaintsOwned;
-    }*/
-
-    /*public void setListIdPaintsOwned(List<Integer> listIdPaintsOwned) {
-        this.listIdPaintsOwned = listIdPaintsOwned;
-    }*/
 
     public Long getShopId() {
         return shopId;
