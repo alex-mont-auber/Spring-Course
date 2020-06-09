@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Entity
@@ -11,52 +12,38 @@ import java.util.Date;
 public class Paint {
 
     /* TESTING ManyToOne */
-
-    @Column(nullable = false)
-    private String title;
-
-    @ManyToOne
-    @JoinColumn(name="shop_id")
-    private Shop shop;
-
+    /*@ManyToOne
+    @JoinColumn(name="shop_id")*/
+    //private Shop shop;
     /* TESTING ManyToOne*/
+
+    private int idShop;
 
     private @Id @GeneratedValue Long paintId;
     private String paintName;
     private String authorName;
     private int price;
 
-
-
     private Date dateEnterShop;
 
     public Paint(){}
 
-    public Paint(String paintName, String authorName, int price, Date dateEnterShop)
+    public Paint(String paintName, String authorName, int price, Date dateEnterShop, int idShop)
     {
         this.paintName = paintName;
         this.authorName = authorName;
         this.price = price;
         this.dateEnterShop = dateEnterShop;
-    }
-    /* TESTING START */
-
-    public String getTitle() {
-        return title;
+        this.idShop = idShop;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public int getIdShop() {
+        return idShop;
     }
 
-    public Shop getShop() {
-        return shop;
+    public void setIdShop(int idShop) {
+        this.idShop = idShop;
     }
-
-    public void setShop(Shop shop) {
-        this.shop = shop;
-    }
-    /* TESTING END*/
 
     public String getPaintName() {
         return paintName;
