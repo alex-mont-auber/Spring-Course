@@ -38,10 +38,15 @@
 
         <div id="createAPaint" class="tabcontent">
             <h3>Create Paints</h3>
-            <p>This system is for create the pictur...collars! of our company</p>
+            <p>This system is for create the pictur...collars! of our company, please, check first in "List of Shops" if exist any shop before create any painting.</p>
+            <select name="Select Shop" id="shopSelection">
+            </select>
             <input type="text" id="newNamePaint" placeholder="Name Paint">
+            <input type="text" id="newAuthorPaint" placeholder="Name Author">
+            <input type="text" id="newPricePaint" placeholder="Price Paint">
             <button type="submit" onclick="createPaint()">Create Paint</button>
-            <div id="showNewPaint"></div>
+            <div id="showNewPaintText"></div>
+            <div id="showNewPaintImage"></div>
         </div>
         
         <div id="showTheShops" class="tabcontent">
