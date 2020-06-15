@@ -38,16 +38,21 @@
 
         <div id="createAPaint" class="tabcontent">
             <h3>Create Paints</h3>
-            <p>This system is for create the pictur...collars! of our company</p>
+            <p>This system is for create the pictur...collars! of our company, please, check first in "List of Shops" if exist any shop before create any painting.</p>
+            <select name="Select Shop" id="shopSelection">
+            </select>
             <input type="text" id="newNamePaint" placeholder="Name Paint">
+            <input type="text" id="newAuthorPaint" placeholder="Name Author">
+            <input type="text" id="newPricePaint" placeholder="Price Paint">
             <button type="submit" onclick="createPaint()">Create Paint</button>
-            <div id="showNewPaint"></div>
+            <div id="showNewPaintText"></div>
+            <div id="showNewPaintImage"></div>
         </div>
         
         <div id="showTheShops" class="tabcontent">
             <h3>Show shops</h3>
             <p>All shops of our company</p>
-            <button type="submit" onclick="showAllShops()">Show all shops</button>
+            <button type="submit" onclick="showAllShops(allShops)">Show all shops</button>
             <div id="allShops">
             </div>
         </div>
@@ -55,10 +60,14 @@
         <div id="eraseEvidences" class="tabcontent">
             <h3>AZ-5</h3>
             <p>Police is comming...</p>
+            <select name="AZ-5 Button Shop" id="az5ShopSelection">
+            </select>
+            <button type="submit" id="AZ5" onclick="az5RedButton()">AZ-5</button>
         </div>
     </div>
     
     <script src="js/script.js" type="text/javascript"></script>
+    <script src="js/auxiliar.js" type="text/javascript"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </body>
 </html>
