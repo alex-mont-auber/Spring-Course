@@ -61,4 +61,9 @@ public class ShopPaintController {
    @PostMapping("/shops/{id}/paints") //CREATE PAINTS(BUILDING)
     Paint newPaint(@RequestBody Paint newPaint) {return paintRepository.save(newPaint);}
 
+    @DeleteMapping("/shops/{id}/paints")
+    void deletePaints(@PathVariable Long id) {
+        paintRepository.deleteAll();
+    }
+
 }
