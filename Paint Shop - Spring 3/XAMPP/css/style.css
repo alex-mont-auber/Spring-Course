@@ -50,8 +50,6 @@
     border-top: none;
 }
 
-/*h1 {}*/
-
 img {
     width: 200px;
     height: 100px;
@@ -60,6 +58,15 @@ img {
 .tab button {
     float: left;
     padding: 14px 16px;
+}
+
+#newNamePaint,
+#newAuthorPaint {
+  width: 120px;
+}
+
+#newPricePaint {
+  width: 80px;
 }
 
 /*-- Tipografy ------------------------*/

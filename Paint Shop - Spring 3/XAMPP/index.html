@@ -52,7 +52,7 @@
         <div id="showTheShops" class="tabcontent">
             <h3>Show shops</h3>
             <p>All shops of our company</p>
-            <button type="submit" onclick="showAllShops()">Show all shops</button>
+            <button type="submit" onclick="showAllShops(allShops)">Show all shops</button>
             <div id="allShops">
             </div>
         </div>
@@ -60,10 +60,14 @@
         <div id="eraseEvidences" class="tabcontent">
             <h3>AZ-5</h3>
             <p>Police is comming...</p>
+            <select name="AZ-5 Button Shop" id="az5ShopSelection">
+            </select>
+            <button type="submit" id="AZ5" onclick="az5RedButton()">AZ-5</button>
         </div>
     </div>
     
     <script src="js/script.js" type="text/javascript"></script>
+    <script src="js/auxiliar.js" type="text/javascript"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </body>
 </html>

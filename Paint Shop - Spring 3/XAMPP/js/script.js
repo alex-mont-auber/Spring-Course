@@ -1,4 +1,4 @@
-        // --- + TABS FUNCTION + --- \\
+       // --- + TABS FUNCTION + --- \\
 
 /* Functions for work of table from w3schools*/
 
@@ -34,11 +34,15 @@ function openTab(evt, cityName)
   evt.currentTarget.className += " active";
 } 
 
-        // --- + AJAX + --- \\
+        // --- + AJAX START + --- \\
+
+  // Variables for general usage AJAX:
+
+  const url = "http://localhost:8080";
+
+  var idShopInput; 
 
   // Create Shop function 
-
-  const url = "http://localhost:8080"
 
 function createShop()
 {
@@ -63,6 +67,8 @@ function createShop()
   });
 }
 
+// Show All Shops function
+
 function showAllShops() 
 {
   $.ajax({
@@ -71,31 +77,22 @@ function showAllShops()
     contentType: 'application/json',
     success: function(data)
     {
-      document.getElementById('allShops').innerHTML="";
-      let ul = document.createElement('ul');
-      for(let e in data) // array's lector
-      {
-          let li = document.createElement('li');
-
-          ul.appendChild(li);
-          li.appendChild += data;
-
-          document.getElementById("allShops").appendChild(ul);
-
-          li.innerHTML = "Shop: " + data[e].shopName + ", ID: " + data[e].shopId + "<button type='submit' onclick='showPaints()'>Show Paints</button>";
-      }
-
+      shopList(data);
+      
       document.getElementById("shopSelection").innerHTML = ""; 
+      document.getElementById("az5ShopSelection").innerHTML = ""
 
       for(let i in data)
       {
         let option = document.createElement('option');
 
         let select = document.getElementById('shopSelection').appendChild(option);
+        let select2 = document.getElementById('az5ShopSelection').appendChild(option);
 
         option.appendChild += data;
 
         document.getElementById('shopSelection').appendChild(select);
+        document.getElementById('az5ShopSelection').appendChild(select2);
 
         option.innerHTML = data[i].shopName;
         console.log(data[i].shopName);
@@ -108,70 +105,13 @@ function showAllShops()
 
 function createPaint() 
 {
-
-  // Var for compare the ID of data from real input ID
-
   // Variable for create the date.
-
-  var idShopInput; 
 
   let actualDate = new Date();
 
-  // Random Paint Election
+  // Call auxiliar function
 
-  function randomPaintElection()
-  {
-    let randomPaintElection = Math.floor(Math.random() * 6) + 1;
-
-    if(randomPaintElection === 1)
-    {
-      $("#paint").attr("src", "img/lagioconda.jpg");
-      $("#paint").attr("alt", "La-Gioconda-image");
-    }
-    else if(2)
-    {
-      $("#paint").attr("src", "img/lifeofbryaneccehomo.jpg");
-      $("#paint").attr("alt", "Life-of-Bryan-Ecce-Homo-image");
-    }
-    else if(3)
-    {
-      $("#paint").attr("src", "img/marseatingherchildrens.jpg");
-      $("#paint").attr("alt", "Mars-Eating-Muffins-in-beach-image");
-    }
-    else if(4)
-    {
-      $("#paint").attr("src", "img/pictureoldwestbandit.jpg");
-      $("#paint").attr("alt", "We-dont-know-how-is-maybe-an-bandit-in-western-image");
-    }
-    else if(5)
-    {
-      $("#paint").attr("src", "img/thegirlwiththepearl.jpg");
-      $("#paint").attr("alt", "girl-with-a-pearl-image");
-    }
-    else
-    {
-      $("p").appendChild("The screaming painting in beach");
-      $("#paint").attr("src", "img/thescream.jpg");
-      $("#paint").attr("alt", "The-scream-image");
-    }
-  }
-
-  // AJAX doit for compare information.
-
-  $.ajax({
-    type:'GET',
-    url: url + '/shops',
-    contentType:'application/json',
-    success: function(data){
-      for(let e in data)
-      {
-        if( $('#shopSelection').val() === data[e].shopName) 
-        {
-          idShopInput = data[e].shopId;
-        }
-      }
-    }
-  })
+  setIdInput();
   
   // Info for transfer to Server JSON format
 
@@ -191,23 +131,50 @@ function createPaint()
     url: url + '/shops/'+ idShopInput + '/paints',
     data: JSON.stringify(sendInfoPaint),
     contentType:'application/json',
-    success: function(){
+    success: function()
+    {
         document.getElementById('showNewPaintImage').innerHTML = "<img id='paint' alt=''>";
-        document.getElementById('showNewPaintText').innerHTML = '<p></p>';
-        randomPaintElection();
+        document.getElementById('showNewPaintText').innerHTML = '<p id="paintText"></p>';
+
+        randomPaintElection(); // Auto select extra info in auxiliar function
     }
   })
 }
 
+// Function for show Paints depending of shop
 
-/* BUILDING
-function showPaints(){
+function showPaints()
+{
+  setIdInput(); // Auto compare and return correct id info.
+
   $.ajax({
     type:'GET',
-    url: url + '/shops',
+    url: url + '/shops/' + idShopInput + '/paints',
     contentType:'application/json',
-    success: function(data){
-      
+    success: function(data)
+    {
+      paintList(data);
+    }
+  })
+}
+
+/*
+function az5RedButton() 
+{
+
+  setIdInput();
+
+  $.ajax({
+    type:'DELETE',
+    url: url + '/shops/' + idShopInput + '/paints',
+    contentType:'application/json',
+    success: function(data)
+    {
+      for(let e in data) {
+        document.getElementById("paintListForShop").innerHTML = "";
+        document.getElementById("paintListForShop").innerHTML = "Nothing to see here :)";
+      }
     }
   })
 }*/
+        // --- + AJAX END + --- \\
