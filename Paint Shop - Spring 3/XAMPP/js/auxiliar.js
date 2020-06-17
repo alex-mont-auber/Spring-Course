@@ -3,7 +3,8 @@
 
 function shopList(data) 
 {
-    document.getElementById('allShops').innerHTML="";
+
+    document.getElementById('allShops').innerHTML ="";
 
     let ul = document.createElement('ul');
 
@@ -16,26 +17,29 @@ function shopList(data)
 
         document.getElementById("allShops").appendChild(ul);
 
-        li.innerHTML = "Shop: " + data[e].shopName + ", ID: " + data[e].shopId + "<button type='submit' onclick='showPaints()'>Show Paints</button><div id='paintListForShop'></div>";
+        li.innerHTML = "Shop: " + data[e].shopName + ", ID: " + data[e].shopId;
     }
 }
 
 function paintList(data) 
 {
-    document.getElementById("paintListForShop").innerHTML = ""
+    document.getElementById('allPaints').innerHTML ="";
       
     let ul = document.createElement('ul');
 
-    for(let e in data) // array's lector
+    for(let e in data) 
     {
-        let li = document.createElement('li');
+        if(data[e].idShop == $('#idShopPaint').val())
+        {
+            let li = document.createElement('li');
+            
+            ul.appendChild(li);
+            li.appendChild += data;
 
-        ul.appendChild(li);
-        li.appendChild += data;
+            document.getElementById("allPaints").appendChild(ul);
 
-        document.getElementById("paintListForShop").appendChild(ul);
-
-        li.innerHTML = "Name Paint: <strong>" + data[e].paintName +  "</strong>, Name Author: <strong>" + data[e].authorName + "</strong>, Price: <strong>" + data[e].price + "</strong>, Date Enter Shop: " + data[e].dateEnterShop;
+            li.innerHTML = "Name Paint: <strong>" + data[e].paintName +  "</strong>, Name Author: <strong>" + data[e].authorName + "</strong>, Price: <strong>" + data[e].price + "</strong>, Date Enter Shop: " + data[e].dateEnterShop;
+        }
     }
 }
 
@@ -46,32 +50,33 @@ function paintList(data)
 function randomPaintElection()
 {
     let randomPaintElection = Math.floor(Math.random() * 6) + 1;
+    console.log(randomPaintElection);
 
-    if(randomPaintElection === 1)
+    if(randomPaintElection == 1)
     {
         $("#paintText").append("The sister of gioconda");
         $("#paint").attr("src", "img/lagioconda.jpg");
         $("#paint").attr("alt", "La-Gioconda-image");
     }
-    else if(2)
+    else if(randomPaintElection == 2)
     {
         $("#paintText").append("An absurd union of all the elements of Bryan's Life");
         $("#paint").attr("src", "img/lifeofbryaneccehomo.jpg");
         $("#paint").attr("alt", "Life-of-Bryan-Ecce-Homo-image");
     }
-    else if(3)
+    else if(randomPaintElection == 3)
     {
         $("#paintText").append("Mars eaten bella-easo muffins in beach");
         $("#paint").attr("src", "img/marseatingherchildrens.jpg");
         $("#paint").attr("alt", "Mars-Eating-Muffins-in-beach-image");
     }
-    else if(4)
+    else if(randomPaintElection == 4)
     {
         $("#paintText").append("Simple silly fool cowboy beaten");
         $("#paint").attr("src", "img/pictureoldwestbandit.jpg");
         $("#paint").attr("alt", "We-dont-know-how-is-maybe-an-bandit-in-western-image");
     }
-    else if(5)
+    else if(randomPaintElection == 5)
     {
         $("#paintText").append("Girl with White Collar's pearl");
         $("#paint").attr("src", "img/thegirlwiththepearl.jpg");
@@ -86,27 +91,3 @@ function randomPaintElection()
 }
 
 // -- RANDOM IMAGE AUXILIAR FUNCTION END -- \\
-
-// -- SET ID INPUT AUXILIAR FUNCTION START -- \\
-
-function setIdInput()
-{
-    $.ajax({
-        type:'GET',
-        url: url + '/shops',
-        contentType:'application/json',
-        success: function(data)
-        {
-            for(let e in data)
-            {
-                if( $('#shopSelection').val() === data[e].shopName || $('#az5ShopSelection') === data[e].shopName) 
-                {
-                idShopInput = data[e].shopId;
-                }
-            }
-        }
-    })
-   // return idShopInput;
-}
-
-  // -- SET ID INPUT AUXILIAR FUNCTION END -- \\

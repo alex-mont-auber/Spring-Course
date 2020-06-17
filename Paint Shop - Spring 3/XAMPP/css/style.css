@@ -16,7 +16,7 @@
 #tabOne {
   display: grid;
   grid-auto-rows: auto;
-  grid-auto-columns: auto auto auto auto auto;
+  grid-auto-columns: auto auto auto auto auto auto;
 }
 
 #buttonOne {
@@ -33,6 +33,10 @@
 
 #buttonFour {
   grid-area: 1 / 4 / 2 / 5;
+}
+
+#buttonFive {
+  grid-area: 1 / 5 / 2 / 6;
 }
 
 
@@ -61,7 +65,8 @@ img {
 }
 
 #newNamePaint,
-#newAuthorPaint {
+#newAuthorPaint,
+#referenceIdShop {
   width: 120px;
 }
 

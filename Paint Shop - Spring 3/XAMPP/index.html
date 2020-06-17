@@ -24,7 +24,8 @@
             <button class="tablinks" onclick="openTab(event, 'createAShop')" id="defaultOpen" id="buttonOne">Create <strong>Shop</strong></button>
             <button class="tablinks" onclick="openTab(event, 'createAPaint')" id="buttonTwo">Create <strong>Paint</strong></button>
             <button class="tablinks" onclick="openTab(event, 'showTheShops')" id="buttonThree">List of Shops</button>
-            <button class="tablinks redButton" onclick="openTab(event, 'eraseEvidences')" id="buttonFour">RED BUTTON</button>
+            <button class="tablinks" onclick="openTab(event, 'showThePaints')" id="buttonFour">List of Paints</button>
+            <button class="tablinks redButton" onclick="openTab(event, 'eraseEvidences')" id="buttonFive">RED BUTTON</button>
         </div>
 
         <div id="createAShop" class="tabcontent">
@@ -39,8 +40,7 @@
         <div id="createAPaint" class="tabcontent">
             <h3>Create Paints</h3>
             <p>This system is for create the pictur...collars! of our company, please, check first in "List of Shops" if exist any shop before create any painting.</p>
-            <select name="Select Shop" id="shopSelection">
-            </select>
+            <input type="text" id="referenceIdShop" placeholder="Shop ID">
             <input type="text" id="newNamePaint" placeholder="Name Paint">
             <input type="text" id="newAuthorPaint" placeholder="Name Author">
             <input type="text" id="newPricePaint" placeholder="Price Paint">
@@ -56,12 +56,20 @@
             <div id="allShops">
             </div>
         </div>
+
+        <div id="showThePaints" class="tabcontent">
+            <h3>Show paints</h3>
+            <p>All paints of our shops. Please introduce the ID of shop you want to check. More info: => List of Shops</p>
+            <input type="text" id="idShopPaint" placeholder="Id Shop">
+            <button type="submit" onclick="showPaints()">Show paints</button>
+            <div id="allPaints">
+            </div>
+        </div>
         
         <div id="eraseEvidences" class="tabcontent">
             <h3>AZ-5</h3>
             <p>Police is comming...</p>
-            <select name="AZ-5 Button Shop" id="az5ShopSelection">
-            </select>
+            <input type="text" id="azIdShop" placeholder="Shop ID">
             <button type="submit" id="AZ5" onclick="az5RedButton()">AZ-5</button>
         </div>
     </div>

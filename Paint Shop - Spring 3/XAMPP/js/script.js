@@ -34,13 +34,11 @@ function openTab(evt, cityName)
   evt.currentTarget.className += " active";
 } 
 
-        // --- + AJAX START + --- \\
+      // --- + AJAX START + --- \\
 
-  // Variables for general usage AJAX:
+// Variables for general usage AJAX:
 
-  const url = "http://localhost:8080";
-
-  var idShopInput; 
+const url = "http://localhost:8080";
 
   // Create Shop function 
 
@@ -77,26 +75,7 @@ function showAllShops()
     contentType: 'application/json',
     success: function(data)
     {
-      shopList(data);
-      
-      document.getElementById("shopSelection").innerHTML = ""; 
-      document.getElementById("az5ShopSelection").innerHTML = ""
-
-      for(let i in data)
-      {
-        let option = document.createElement('option');
-
-        let select = document.getElementById('shopSelection').appendChild(option);
-        let select2 = document.getElementById('az5ShopSelection').appendChild(option);
-
-        option.appendChild += data;
-
-        document.getElementById('shopSelection').appendChild(select);
-        document.getElementById('az5ShopSelection').appendChild(select2);
-
-        option.innerHTML = data[i].shopName;
-        console.log(data[i].shopName);
-      }
+      shopList(data); // create Shop List
     }
   })
 }
@@ -109,26 +88,20 @@ function createPaint()
 
   let actualDate = new Date();
 
-  // Call auxiliar function
-
-  setIdInput();
-  
   // Info for transfer to Server JSON format
 
   var sendInfoPaint = 
   {
-    shopId: idShopInput,
     paintName: $('#newNamePaint').val(),
     authorName: $('#newAuthorPaint').val(),
     price: $('#newPricePaint').val(),
-    dateEnterShop: actualDate
+    dateEnterShop: actualDate,
+    idShop: $('#referenceIdShop').val(),
   };
 
-  // AJAX for create paints and extra info.
-  
   $.ajax({
     type:'POST',
-    url: url + '/shops/'+ idShopInput + '/paints',
+    url: url + '/shops/'+ $('#referenceIdShop').val() + '/paints',
     data: JSON.stringify(sendInfoPaint),
     contentType:'application/json',
     success: function()
@@ -145,11 +118,9 @@ function createPaint()
 
 function showPaints()
 {
-  setIdInput(); // Auto compare and return correct id info.
-
   $.ajax({
     type:'GET',
-    url: url + '/shops/' + idShopInput + '/paints',
+    url: url + '/shops/' + $('#idShopPaint').val() + '/paints',
     contentType:'application/json',
     success: function(data)
     {
@@ -158,23 +129,37 @@ function showPaints()
   })
 }
 
-/*
 function az5RedButton() 
 {
-
-  setIdInput();
-
   $.ajax({
-    type:'DELETE',
-    url: url + '/shops/' + idShopInput + '/paints',
+    type:'GET',
+    url: url + '/shops/' + $('#azIdShop').val() + '/paints',
     contentType:'application/json',
     success: function(data)
     {
-      for(let e in data) {
-        document.getElementById("paintListForShop").innerHTML = "";
-        document.getElementById("paintListForShop").innerHTML = "Nothing to see here :)";
+      let idToErase;
+
+      for(let e in data)
+      {
+        if($('#azIdShop').val() == data[e].idShop)
+        {
+
+          idToErase = data[e].paintId;
+
+          $.ajax({
+            type:'DELETE',
+            url: url + '/shops/' + idToErase + '/paints',
+            contentType:'application/json',
+            success: function()
+            {
+              document.getElementById("allPaints").innerHTML = "";
+              document.getElementById("allPaints").innerHTML = "<p>Nothing to see here :)</p>";
+            }
+          })
+        }
       }
     }
-  })
-}*/
+  });
+}
+
         // --- + AJAX END + --- \\
