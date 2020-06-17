@@ -2,28 +2,49 @@ package com.ITAcademy.WhiteCollar.Models;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Entity
 
-
 public class Paint {
 
     private @Id @GeneratedValue Long paintId;
+    private String paintName;
     private String authorName;
     private int price;
+
     private Date dateEnterShop;
+
+    private int idShop;
 
     public Paint(){}
 
-    public Paint(String authorName, int price, Date dateEnterShop){
+    public Paint(String paintName, String authorName, int price, Date dateEnterShop, int idShop)
+    {
+        this.paintName = paintName;
         this.authorName = authorName;
         this.price = price;
         this.dateEnterShop = dateEnterShop;
+        this.idShop = idShop;
+    }
+
+    public int getIdShop() {
+        return idShop;
+    }
+
+    public void setIdShop(int idShop) {
+        this.idShop = idShop;
+    }
+
+    public String getPaintName() {
+        return paintName;
+    }
+
+    public void setPaintName(String paintName) {
+        this.paintName = paintName;
     }
 
     public Long getPaintId() {

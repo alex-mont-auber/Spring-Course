@@ -3,24 +3,25 @@ package com.ITAcademy.WhiteCollar.Models;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
+@Table(name="Shop")
 
 public class Shop {
 
-    private @Id @GeneratedValue Long shopId;
+
+    private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Long shopId;
     private String shopName;
     private int quantityPaints;
 
     public Shop(){}
 
-    public Shop(String shopName, int quantityPaints){
+    public Shop(String shopName){
         this.shopName = shopName;
-        this.quantityPaints = quantityPaints;
     }
 
     public Long getShopId() {
