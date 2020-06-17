@@ -13,6 +13,7 @@ import java.util.Set;
 
 public class Shop {
 
+
     private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Long shopId;
     private String shopName;
     private int quantityPaints;

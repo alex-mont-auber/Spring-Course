@@ -11,20 +11,14 @@ import java.util.List;
 
 public class Paint {
 
-    /* TESTING ManyToOne */
-    /*@ManyToOne
-    @JoinColumn(name="shop_id")*/
-    //private Shop shop;
-    /* TESTING ManyToOne*/
-
-    private int idShop;
-
     private @Id @GeneratedValue Long paintId;
     private String paintName;
     private String authorName;
     private int price;
 
     private Date dateEnterShop;
+
+    private int idShop;
 
     public Paint(){}
 
